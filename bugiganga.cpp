@@ -1,18 +1,17 @@
 #include <cstdlib>
 #include <iostream>
-
 #include <windows.h>
 #include <locale.h>
 
 enum DOS_COLORS
 {
-    PRETO,
-    AZUL,
-    VERDE,
-    CIANO,
-    VERMELHO,
+    BLACK,
+    BLUE,
+    GREEN,
+    CYAN,
+    RED,
     MAGENTA,
-    MARRON,
+    BROWN,
     LIGHT_GRAY,
     DARK_GRAY,
     LIGHT_BLUE,
@@ -23,11 +22,6 @@ enum DOS_COLORS
     YELLOW,
     WHITE
 };
-
-void teclado_portugues(void)
-{
-    setlocale(LC_ALL, "portuguese");
-}
 
 void gotoxy(int coluna, int linha) // coloca o cursor na posição x, y do plano da tela
 {
