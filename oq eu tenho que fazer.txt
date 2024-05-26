@@ -1,1 +1,0 @@
-fazer uma funcao print(), recebe uma struct e na funcao ele faz o for percorrendo os valores de struct.linha, struct.coluna e struct.matriz;
