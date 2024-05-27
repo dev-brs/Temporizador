@@ -3,42 +3,19 @@
 #include "matrizes.c"
 
 void printMatriz(struct estruturaDefault estrutura, DOS_COLORS corFundo, DOS_COLORS corLetra);
-// system("cls");
+void printContador(int tempoAtual ,int quantidadeDeDigitos, DOS_COLORS corFundo, DOS_COLORS corLetra);
 
 int main()
 {
     printMatriz(algarismoZero, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoUm, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoDois, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoTres, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoQuatro, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoCinco, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoSeis, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoSete, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoOito, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoNove, BLACK, RED);
-    Sleep(1000);
-    system("cls");
-    printMatriz(algarismoZero, BLACK, RED);
+
+    printContador(20, 3, BLACK, RED);
+    
     return 0;
+}
+
+void printContador(int tempoAtual ,int quantidadeDeDigitos, DOS_COLORS corFundo, DOS_COLORS corLetra){
+
 }
 
 void printMatriz(struct estruturaDefault estrutura, DOS_COLORS corFundo, DOS_COLORS corLetra)
