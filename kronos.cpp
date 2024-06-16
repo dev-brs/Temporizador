@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <locale.h>
-#include "main/colors.h"
-#include "main/structs.h"
-#include "main/mat.h"
-#include "main/matrizes.cpp"
-#include "main/timer.cpp"
+#include "src/colors.h"
+#include "src/structs.h"
+#include "src/mat.h"
+#include "src/matrizes.cpp"
+#include "src/timer.cpp"
 
 void printMatriz(struct estruturaDefault estrutura, COLORS corFundo, COLORS corLetra);
 
