@@ -1,9 +1,10 @@
-#include <iostream>
+#ifndef TIMER_H
+#define TIMER_H
+
 #include <chrono>
 #include <thread>
 #include <functional>
 #include <atomic>
-
 
 class Timer {
 public:
@@ -40,6 +41,4 @@ private:
     std::thread timer_thread;
 };
 
-void timerDelay(int tempoEmMs) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(tempoEmMs));
-}
+#endif
