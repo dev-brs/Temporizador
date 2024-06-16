@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++11
-SRCS = kronos.cpp src/mat.cpp src/colors.cpp
+SRCS = kronos.cpp src/mat.cpp src/colors.cpp src/timer.cpp
 OBJS = $(SRCS:.cpp=.o)
 TARGET = out
 
