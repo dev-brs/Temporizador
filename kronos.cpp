@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <locale.h>
-#include "main/colors.cpp"
+#include "main/colors.h"
 #include "main/structs.h"
 #include "main/mat.h"
 #include "main/matrizes.cpp"

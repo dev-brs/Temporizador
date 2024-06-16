@@ -1,16 +1,5 @@
-#include <stdio.h>
-
-typedef enum {
-    RESET,
-    BLACK,
-    RED,
-    GREEN,
-    YELLOW,
-    BLUE,
-    MAGENTA,
-    CYAN,
-    WHITE
-} COLORS;
+#include "colors.h"
+#include <iostream>
 
 void textColor(COLORS selectedColor) {
     const char* colorCodes[] = {
