@@ -1,12 +1,12 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+#include <vector>
+
 struct estruturaDefault {
     int colunas;
     int linhas;
-    int matriz[2500];
+    std::vector<int> matriz;
 };
-
-extern struct estruturaDefault nomeStruct;
 
 #endif

@@ -1,39 +1,53 @@
-#include <stdio.h>
-#include "bugiganga.cpp"
-#include "matrizes.c"
+#include <iostream>
+#include <vector>
+#include "locale.h"
+#include "colors.cpp"
+#include "structs.h"
+#include "mat.h"
+#include "matrizes.cpp"
+#include "timer.cpp"
 
-void printMatriz(struct estruturaDefault estrutura, DOS_COLORS corFundo, DOS_COLORS corLetra);
-void printContador(int tempoAtual ,int quantidadeDeDigitos, DOS_COLORS corFundo, DOS_COLORS corLetra);
+void printMatriz(struct estruturaDefault estrutura, COLORS corFundo, COLORS corLetra);
 
-int main()
-{
-    printMatriz(algarismoZero, BLACK, RED);
+int main() {
+    setlocale(LC_ALL, "");
+    // Vetor de matrizes para concatenar
+    std::vector<estruturaDefault> matrizes = {algarismoOito, algarismoNove, algarismoDois};
 
-    printContador(20, 3, BLACK, RED);
+    // Concatenar matrizes A, B e C
+    estruturaDefault resultado = concatenarMatrizes(matrizes);
+
+    // Imprimir a matriz concatenada (apenas para verificar o resultado)
+    printMatriz(resultado, BLACK, WHITE);
+    
+    timerDelay(4000);
+    matrizes = {algarismoOito, algarismoNove, algarismoTres};
+
+    // Concatenar matrizes A, B e C
+    resultado = concatenarMatrizes(matrizes);
+
+    // Imprimir a matriz concatenada (apenas para verificar o resultado)
+    printMatriz(resultado, BLACK, WHITE);
     
     return 0;
 }
-
-void printContador(int tempoAtual ,int quantidadeDeDigitos, DOS_COLORS corFundo, DOS_COLORS corLetra){
-
-}
-
-void printMatriz(struct estruturaDefault estrutura, DOS_COLORS corFundo, DOS_COLORS corLetra)
+void printMatriz(struct estruturaDefault estrutura, COLORS corFundo, COLORS corLetra)
 {
+    limparConsole();
     for (int i = 0; i < estrutura.linhas; i++){
         for (int j = 0; j < estrutura.colunas; j++)
         {
             if (estrutura.matriz[i * estrutura.colunas + j])
             {
-               textcolor(corLetra);
+               textColor(corLetra);
             }
             else
             {
-                textcolor(corFundo);
+                textColor(corFundo);
             }
-            printf("%c", 219);
+            std::cout << "█";
         }
-        printf("\n");
+        std::cout << std::endl;
     }
-    textcolor(WHITE);
+    textColor(WHITE);
 }
