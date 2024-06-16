@@ -33,6 +33,7 @@ estruturaDefault NUMEROS[10] = {
 void printMatriz(struct estruturaDefault estrutura, COLORS corFundo, COLORS corLetra);
 void dividirNumero(int numero, int *centena, int *dezena, int *unidade);
 void callbackTimer();
+void printUserMenu();
 
 int main() {
     setlocale(LC_ALL, "");
@@ -74,6 +75,12 @@ void printMatriz(struct estruturaDefault estrutura, COLORS corFundo, COLORS corL
     textColor(WHITE);
 }
 
+void printUserMenu()
+{
+    std::cout << "Segue abaixo menu de funcionalidades" << std::endl << std::endl;
+    std::cout << "P - Pause/Play" << std::endl;
+}
+
 void callbackTimer() {
     if (CONTAGEM <= 0) return;
 
@@ -83,6 +90,7 @@ void callbackTimer() {
     std::vector<estruturaDefault> matrizes = {NUMEROS[centena], NUMEROS[dezena], NUMEROS[unidade]};
     estruturaDefault resultado = concatenarMatrizes(matrizes);
     printMatriz(resultado, BLACK, GREEN);
-
+    printUserMenu();
+    
     CONTAGEM--;
 }
