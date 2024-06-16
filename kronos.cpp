@@ -5,6 +5,7 @@
 #include <thread>
 #include <functional>
 #include <atomic>
+
 #include "src/colors.h"
 #include "src/structs.h"
 #include "src/mat.h"
@@ -12,8 +13,9 @@
 #include "src/matrizes.cpp"
 
 #define UM_SEGUNDO 1000
-
-int CONTAGEM;
+#define LIMIAR_DE_TEMPO 410
+#define TEMPO_INICIAL 420
+int CONTAGEM = TEMPO_INICIAL;
 int centena, dezena, unidade;
 estruturaDefault NUMEROS[10] = {
         algarismoZero,
@@ -35,15 +37,18 @@ void callbackTimer();
 int main() {
     setlocale(LC_ALL, "");
 
-    CONTAGEM = 420;
     Timer timer;
 
     timer.start(std::chrono::milliseconds(UM_SEGUNDO), callbackTimer);
-
-    while(true){};//soh pra passar o tempo
+    
+    while(true){
+        if(CONTAGEM < LIMIAR_DE_TEMPO){
+            timer.stop();
+            return 1;
+        }
+    };//soh pra passar o tempo
 
     timer.stop();
-
     return 0;
 }
 
@@ -77,7 +82,7 @@ void callbackTimer() {
     dividirNumero(CONTAGEM, &centena, &dezena, &unidade);
     std::vector<estruturaDefault> matrizes = {NUMEROS[centena], NUMEROS[dezena], NUMEROS[unidade]};
     estruturaDefault resultado = concatenarMatrizes(matrizes);
-    printMatriz(resultado, BLACK, WHITE);
+    printMatriz(resultado, BLACK, GREEN);
 
     CONTAGEM--;
 }
