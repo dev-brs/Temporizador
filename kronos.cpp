@@ -5,6 +5,7 @@
 #include <thread>
 #include <functional>
 #include <atomic>
+#include <conio.h>
 
 #include "src/colors.h"
 #include "src/structs.h"
@@ -15,6 +16,12 @@
 #define UM_SEGUNDO 1000
 #define LIMIAR_DE_TEMPO 410
 #define TEMPO_INICIAL 420
+
+typedef enum ESTADOS {
+    PARADO, 
+    CONTANDO
+};
+
 int CONTAGEM = TEMPO_INICIAL;
 int centena, dezena, unidade;
 estruturaDefault NUMEROS[10] = {
@@ -32,6 +39,7 @@ estruturaDefault NUMEROS[10] = {
 
 void printMatriz(struct estruturaDefault estrutura, COLORS corFundo, COLORS corLetra);
 void dividirNumero(int numero, int *centena, int *dezena, int *unidade);
+void atualizaEstado(ESTADOS *estadoAtual, Timer *timer);
 void callbackTimer();
 void printUserMenu();
 
@@ -39,15 +47,28 @@ int main() {
     setlocale(LC_ALL, "");
 
     Timer timer;
+    char teclaPressionada;
+    ESTADOS estadoAtual = PARADO;
 
     timer.start(std::chrono::milliseconds(UM_SEGUNDO), callbackTimer);
     
     while(true){
+        atualizaEstado(&estadoAtual, &timer);
         if(CONTAGEM < LIMIAR_DE_TEMPO){
             timer.stop();
             return 1;
         }
-    };//soh pra passar o tempo
+        if ( kbhit() ) {
+            teclaPressionada = getch();
+
+            switch(teclaPressionada) {
+                case 'P':
+                case 'p':
+                    (estadoAtual) ? estadoAtual = PARADO : estadoAtual = CONTANDO;
+                    break;
+            }
+        }
+    };
 
     timer.stop();
     return 0;
@@ -93,4 +114,23 @@ void callbackTimer() {
     printUserMenu();
     
     CONTAGEM--;
+}
+
+void atualizaEstado(ESTADOS *estadoAtual, Timer *timer) {
+    static bool timerStarted = false;
+
+    switch(*estadoAtual) {
+        case PARADO:
+            if (timerStarted) {
+                timer->stop();
+                timerStarted = false;
+            }
+            break;
+        case CONTANDO:
+            if (!timerStarted) {
+                timer->start(std::chrono::milliseconds(UM_SEGUNDO), callbackTimer);
+                timerStarted = true;
+            }
+            break;
+    }
 }
